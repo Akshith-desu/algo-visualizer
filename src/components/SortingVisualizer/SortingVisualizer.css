@@ -1,0 +1,112 @@
+.visualizer-container {
+  padding: 20px;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f8fafc;
+  min-height: 100vh;
+}
+
+.controls {
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.controls input[type='text'] {
+  padding: 8px;
+  width: 280px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.controls button {
+  padding: 8px 16px;
+  cursor: pointer;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-size: 14px;
+  margin: 5px;
+}
+
+.controls button:hover {
+  background-color: #2563eb;
+  transform: scale(1.05);
+}
+
+.controls button:disabled {
+  background-color: #cbd5e1;
+  cursor: not-allowed;
+}
+
+.controls input[type='range'] {
+  margin: 0 10px;
+}
+
+.slider-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bars-container {
+  display: flex;
+  align-items: flex-end;
+  height: 300px;
+  margin-top: 30px;
+  justify-content: center;
+  gap: 2px;
+}
+
+.bar {
+  background-color: #4ade80;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  border-radius: 2px;
+  transition: height 0.3s ease, background-color 0.2s;
+}
+
+.bar-label {
+  font-size: 10px;
+  color: black;
+  margin-bottom: 2px;
+}
+/* Add this CSS to your existing SortingVisualizer.css for a clean UI */
+
+.visualizer-container {
+  padding: 20px;
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+}
+
+.controls {
+  margin: 20px 0;
+}
+
+.slider-group {
+  margin: 10px 0;
+}
+
+.bar {
+  display: inline-block;
+  margin: 0 1px;
+  background-color: #4ade80;
+  position: relative;
+}
+
+.bar-label {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 12px;
+}
