@@ -112,11 +112,5 @@ Contributions and feedback are welcome:
 1. Fork the repo
 2. Create branch: `git checkout -b feature/YourFeature`
 3. Commit changes: \`git commit -m "Add YourFeature"
-
-```
 4. Push to branch: `git push origin feature/YourFeature`
 5. Open a Pull Request
-
----
-
-```
