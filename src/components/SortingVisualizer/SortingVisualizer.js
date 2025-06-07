@@ -2,7 +2,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './SortingVisualizer.css';
 
-//const GEMINI_API_KEY = 'AIzaSyDLEUU3FeImRmu3WN0aoBf111CqIJNJdSM'; // Move to .env in production!
 const GEMINI_API_KEY = process.env.REACT_APP_GEMINI_API_KEY;
 
 if(!GEMINI_API_KEY){
