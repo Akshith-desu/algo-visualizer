@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './AIAssistant.css';
 
-//const GEMINI_API_KEY = 'AIzaSyDLEUU3FeImRmu3WN0aoBf111CqIJNJdSM'; // Replace with your actual API key
+
 const GEMINI_API_KEY = process.env.REACT_APP_GEMINI_API_KEY;
 
 if(!GEMINI_API_KEY){
