@@ -1,0 +1,551 @@
+/* ───────────────────────────────────────────────────────────────────────────── */
+/* MSTVisualizer.css                                                            */
+/* Updated to match the greyish theme of Sorting/Searching/Graph visualizers    */
+/* ───────────────────────────────────────────────────────────────────────────── */
+
+/* ─────────────── Greyish Root Container ─────────────── */
+.mst-visualizer {
+  padding: 30px;
+  text-align: center;
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  min-height: 100vh;
+  color: #374151;
+}
+
+.mst-visualizer .header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 5px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.mst-visualizer .header p {
+  font-size: 1.1rem;
+  color: #4b5563;
+  margin-top: 0;
+}
+
+/* ───────────── Controls Panel (formerly .controls-panel) ───────────── */
+.controls-panel {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 20px 30px;
+  margin: 15px auto;
+  max-width: 1000px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  align-items: center;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #374151;
+}
+
+.control-group label {
+  font-weight: 500;
+  color: #374151;
+}
+
+.control-group input[type='range'] {
+  width: 150px;
+  accent-color: #6366f1;
+}
+
+.control-group select {
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #ffffff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #374151;
+}
+
+.control-group select:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+/* ───────────── Algorithm Buttons (formerly .algorithm-buttons) ───────────── */
+.algorithm-buttons {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 15px 30px;
+  margin: 0 auto 20px auto;
+  max-width: 1000px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.algorithm-buttons button {
+  padding: 10px 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  min-width: 180px;
+  position: relative;
+  overflow: hidden;
+  color: #ffffff;
+}
+
+.prim-button {
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+}
+
+.prim-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+  box-shadow: 0 8px 15px -3px rgba(79, 70, 229, 0.2);
+}
+
+.kruskal-button {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.kruskal-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  box-shadow: 0 8px 15px -3px rgba(16, 185, 129, 0.2);
+}
+
+.reset-button {
+  background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+}
+
+.reset-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #5a6268 0%, #343a40 100%);
+  box-shadow: 0 8px 15px -3px rgba(108, 117, 125, 0.2);
+}
+
+.algorithm-buttons button:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.algorithm-buttons button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.6s;
+}
+
+.algorithm-buttons button:hover:not(:disabled)::before {
+  left: 100%;
+}
+
+/* ───────────── Visualization Container ───────────── */
+.visualization-container {
+  display: flex;
+  gap: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.graph-container {
+  flex: 2;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+  position: relative;
+}
+
+.graph-container .graph-background {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.graph-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(circle, #f0f0f0 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.3;
+  z-index: 1;
+}
+
+/* ───────────── Node Styles ───────────── */
+.mst-node {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background-color: #4f46e5;
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 600;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 3px solid #e5e7eb;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 10;
+}
+
+.mst-node.in-mst {
+  background-color: #10b981;
+  border-color: #047857;
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
+}
+
+.mst-node.highlighted {
+  background-color: #ff6b35;
+  border-color: #e8590c;
+  transform: scale(1.15);
+  box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6);
+}
+
+.node-id {
+  z-index: 2;
+}
+
+.node-glow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0);
+  transition: box-shadow 0.3s ease;
+}
+
+.mst-node.in-mst .node-glow {
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+}
+
+.mst-node.highlighted .node-glow {
+  box-shadow: 0 0 30px rgba(255, 107, 53, 0.7);
+}
+
+/* ───────────── Edge Styles ───────────── */
+.mst-edge {
+  position: absolute;
+  height: 6px;
+  background-color: #9ca3af;
+  border-radius: 3px;
+  z-index: 5;
+  overflow: hidden;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, height 0.3s ease;
+}
+
+.mst-edge.in-mst {
+  background-color: #10b981;
+  height: 8px;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+}
+
+.mst-edge.highlighted {
+  background-color: #ff6b35;
+  height: 8px;
+  box-shadow: 0 0 12px rgba(255, 107, 53, 0.7);
+}
+
+.edge-glow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  transition: box-shadow 0.3s ease;
+}
+
+.mst-edge.in-mst .edge-glow {
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.5);
+}
+
+.mst-edge.highlighted .edge-glow {
+  box-shadow: 0 0 20px rgba(255, 107, 53, 0.6);
+}
+
+/* ───────────── Edge Weight Styles ───────────── */
+.mst-edge-weight {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  background-color: #ffffff;
+  border: 2px solid #9ca3af;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333333;
+  font-weight: 600;
+  font-size: 14px;
+  z-index: 7;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.mst-edge-weight.in-mst {
+  background-color: #10b981;
+  border-color: #047857;
+  color: #ffffff;
+  transform: scale(1.1);
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.4);
+}
+
+.mst-edge-weight.highlighted {
+  background-color: #ff6b35;
+  border-color: #e8590c;
+  color: #ffffff;
+  transform: scale(1.2);
+  box-shadow: 0 6px 15px rgba(255, 107, 53, 0.6);
+}
+
+/* ───────────── Info Panel ───────────── */
+.info-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 320px;
+}
+
+/* ───────────── Stats Panel ───────────── */
+.stats-panel {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px 30px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+}
+
+.stats-panel h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #1f2937;
+  font-size: 1.3rem;
+  font-weight: 600;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.stat-label {
+  font-size: 0.95rem;
+  color: #4b5563;
+  font-weight: 500;
+}
+
+.stat-value {
+  font-size: 1rem;
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.stat-value.cost {
+  font-size: 1.2rem;
+  color: #10b981;
+  font-weight: 700;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #e9ecef;
+  border-radius: 4px;
+  margin: 12px 0;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border-radius: 4px;
+  transition: width 0.5s ease;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+}
+
+.current-step {
+  margin-top: 15px;
+  padding: 12px 16px;
+  background: #ffffff;
+  border-left: 4px solid #6366f1;
+  border-radius: 0 8px 8px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.current-step h4 {
+  margin: 0 0 8px 0;
+  color: #6366f1;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.current-step p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #4b5563;
+  line-height: 1.4;
+}
+
+/* ───────────── Algorithm Info Panel ───────────── */
+.algorithm-info {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px 30px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+}
+
+.algorithm-info h3 {
+  margin: 0 0 15px 0;
+  color: #1f2937;
+  font-size: 1.3rem;
+  font-weight: 600;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.description {
+  font-size: 0.95rem;
+  color: #4b5563;
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.complexity {
+  margin-bottom: 15px;
+  padding: 12px;
+  background: #f3f4f6;
+  border-left: 4px solid #6366f1;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+.complexity strong {
+  color: #6366f1;
+  font-weight: 600;
+}
+
+.characteristics strong {
+  display: block;
+  margin-bottom: 8px;
+  color: #374151;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.characteristics ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.characteristics li {
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+  color: #4b5563;
+  line-height: 1.4;
+}
+
+/* ───────────── Responsive Design ───────────── */
+@media (max-width: 1200px) {
+  .visualization-container {
+    flex-direction: column;
+  }
+  .info-panel {
+    flex-direction: row;
+    gap: 20px;
+  }
+  .stats-panel,
+  .algorithm-info {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .mst-visualizer {
+    padding: 20px;
+  }
+  .header h1 {
+    font-size: 2rem;
+  }
+  .header p {
+    font-size: 1rem;
+  }
+  .controls-panel {
+    flex-direction: column;
+    padding: 15px;
+    gap: 20px;
+  }
+  .algorithm-buttons {
+    flex-direction: column;
+    padding: 15px;
+    gap: 15px;
+  }
+  .algorithm-buttons button {
+    width: 100%;
+    min-width: auto;
+  }
+  .graph-background {
+    height: 350px;
+  }
+  .info-panel {
+    flex-direction: column;
+  }
+}
+
+/* ───────────── Transitions for Accessibility ───────────── */
+* {
+  transition-property: background-color, border-color, box-shadow, transform;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+button:focus,
+input:focus,
+select:focus {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
+}

@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import SortingPage from "./pages/SortingPage";
 import SearchingPage from "./pages/SearchingPage";
 import GraphPage from "./pages/GraphPage";
+import MSTPage from "./pages/MSTPage";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/sorting" element={<SortingPage/>} />
         <Route path="/search" element={<SearchingPage/>} />
         <Route path="/graph" element={<GraphPage />} />
+        <Route path="/mst" element={<MSTPage />} />
       </Routes>
     </Router>
   );

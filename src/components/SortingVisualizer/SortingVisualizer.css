@@ -1,112 +1,522 @@
-.visualizer-container {
+/* Updated Styles with Greyish Theme */
+.visualizer-container { 
+  padding: 30px; 
+  text-align: center; 
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  min-height: 100vh; 
+  color: #374151;
+}
+
+.visualizer-container h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 40px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.current-step {
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
   padding: 20px;
-  text-align: center;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 20px auto;
+  max-width: 800px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  color: #4b5563;
+  line-height: 1.5;
+}
+
+.current-step strong {
+  color: #1f2937;
+}
+
+.controls { 
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 30px;
+  margin: 30px auto;
+  max-width: 1000px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  display: flex; 
+  flex-wrap: wrap; 
+  gap: 20px; 
+  justify-content: center; 
+  align-items: center; 
+}
+
+.controls input[type='text'] { 
+  padding: 12px 16px; 
+  width: 280px; 
+  font-size: 14px; 
+  border-radius: 8px; 
+  border: 2px solid #d1d5db; 
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  background: #f9fafb;
+  transition: all 0.3s ease;
+}
+
+.controls input[type='text']:focus {
+  outline: none;
+  border-color: #6366f1;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.controls button { 
+  padding: 12px 20px; 
+  cursor: pointer; 
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  color: white; 
+  border: none; 
+  border-radius: 8px; 
+  transition: all 0.3s ease; 
+  font-size: 14px; 
+  font-weight: 500;
+  margin: 5px; 
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.controls button:hover { 
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px -3px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+}
+
+.controls button:disabled { 
+  background: #9ca3af; 
+  cursor: not-allowed; 
+  transform: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.controls input[type='range'] { 
+  margin: 0 15px;
+  accent-color: #6366f1;
+}
+
+.slider-group { 
+  display: flex; 
+  flex-direction: column;
+  align-items: center; 
+  gap: 8px;
   background: #f8fafc;
-  min-height: 100vh;
+  padding: 16px 20px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
 }
 
-.controls {
-  margin-bottom: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-  align-items: center;
-}
-
-.controls input[type='text'] {
-  padding: 8px;
-  width: 280px;
+.slider-group label {
+  font-weight: 500;
+  color: #374151;
   font-size: 14px;
-  border-radius: 4px;
-  border: 1px solid #ddd;
+}
+
+.slider-group select {
+  padding: 8px 12px;
+  border: 2px solid #d1d5db;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #374151;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.slider-group select:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.bars-container { 
+  display: flex; 
+  align-items: flex-end; 
+  height: 320px; 
+  margin: 40px auto;
+  max-width: 1000px;
+  justify-content: center; 
+  gap: 2px;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+
+  /* 1) Allow horizontal scrolling so bars never “break out” of the container */
+  overflow-x: auto;         /* ← added */
+  /* (optional) hide vertical scrollbar if you don’t want it showing */
+  /* overflow-y: hidden; */
+}
+
+.bar { 
+  background-color: #4ade80; 
+
+  /* 2) Let each bar shrink proportionally as needed */
+  flex: 1 1 0;              /* ← changed from “display: flex; …” */
+  
+  /* You can keep a very small “min-width” just so labels never collapse completely,
+     but don’t set it so large that 100+ bars push the container out of bounds. */
+  min-width: 4px;           /* ← added (adjust up/down as you like) */
+  
+  display: flex; 
+  justify-content: center; 
+  align-items: flex-end; 
+  border-radius: 4px 4px 0 0; 
+  transition: height 0.3s ease, background-color 0.2s; 
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.controls button {
-  padding: 8px 16px;
-  cursor: pointer;
-  background-color: #3b82f6;
+
+.bar-label { 
+  font-size: 11px; 
+  color: #1f2937; 
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+/* AI Chat Container - Improved Greyish Theme */
+.ai-chat-container {
+  max-width: 900px;
+  margin: 40px auto;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.ai-chat-container h3 {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+  color: white;
+  margin: 0;
+  padding: 20px 24px;
+  font-size: 18px;
+  font-weight: 600;
+  border-bottom: 1px solid #4b5563;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.chat-messages {
+  height: 400px;
+  overflow-y: auto;
+  background: #f8fafc;
+}
+
+.welcome-message {
+  text-align: center;
+  color: #6b7280;
+  padding: 50px 30px;
+  background: #f8fafc;
+}
+
+.welcome-message p {
+  margin: 12px 0;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.message {
+  border-bottom: 1px solid #e5e7eb;
+  animation: fadeIn 0.4s ease-in;
+}
+
+.message:last-child {
+  border-bottom: none;
+}
+
+.message-content {
+  padding: 24px;
+  max-width: none;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  border: none;
+}
+
+.user-message {
+  background: #ffffff;
+}
+
+.user-message .message-content {
+  background: #ffffff;
+  color: #374151;
+  margin: 0;
+  border-left: 4px solid #6366f1;
+}
+
+.ai-message {
+  background: #f8fafc;
+}
+
+.ai-message .message-content {
+  background: #f8fafc;
+  color: #374151;
+  margin: 0;
+  border-left: 4px solid #10b981;
+}
+
+.message-content strong {
+  display: inline;
+  margin-bottom: 0;
+  margin-right: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  opacity: 1;
+}
+
+.message-content p {
+  margin: 0;
+  line-height: 1.7;
+  font-size: 15px;
+  display: inline;
+}
+
+.ai-response {
+  line-height: 1.7;
+  font-size: 15px;
+  color: #374151;
+}
+
+.ai-response p {
+  margin: 16px 0;
+}
+
+.ai-response p:first-child {
+  margin-top: 0;
+}
+
+.ai-response p:last-child {
+  margin-bottom: 0;
+}
+
+.typing {
+  animation: pulse 1.5s infinite;
+  color: #9ca3af;
+  font-style: italic;
+}
+
+.chat-input {
+  display: flex;
+  padding: 20px 24px;
+  background: #ffffff;
+  border-top: 1px solid #e5e7eb;
+  gap: 16px;
+  align-items: center;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 14px 18px;
+  border: 2px solid #d1d5db;
+  border-radius: 10px;
+  font-size: 15px;
+  outline: none;
+  transition: all 0.3s ease;
+  background: #f9fafb;
+  resize: none;
+  min-height: 20px;
+  max-height: 120px;
+}
+
+.chat-input input:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+  background: #ffffff;
+}
+
+.chat-input button {
+  padding: 14px 20px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   color: white;
   border: none;
-  border-radius: 6px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
   font-size: 14px;
-  margin: 5px;
+  transition: all 0.3s ease;
+  min-width: 70px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
-.controls button:hover {
-  background-color: #2563eb;
-  transform: scale(1.05);
+.chat-input button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.15);
 }
 
-.controls button:disabled {
-  background-color: #cbd5e1;
+.chat-input button:disabled {
+  background: #9ca3af;
   cursor: not-allowed;
+  transform: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.controls input[type='range'] {
-  margin: 0 10px;
-}
-
-.slider-group {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.bars-container {
-  display: flex;
-  align-items: flex-end;
-  height: 300px;
-  margin-top: 30px;
-  justify-content: center;
-  gap: 2px;
-}
-
-.bar {
-  background-color: #4ade80;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  border-radius: 2px;
-  transition: height 0.3s ease, background-color 0.2s;
-}
-
-.bar-label {
-  font-size: 10px;
-  color: black;
-  margin-bottom: 2px;
-}
-/* Add this CSS to your existing SortingVisualizer.css for a clean UI */
-
-.visualizer-container {
-  padding: 20px;
-  text-align: center;
-  font-family: 'Arial', sans-serif;
-}
-
-.controls {
+/* Code Block Styling - Improved */
+.code-block {
+  background: #1f2937;
+  border: 1px solid #374151;
+  border-radius: 10px;
   margin: 20px 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
+  position: relative;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
-.slider-group {
-  margin: 10px 0;
-}
-
-.bar {
-  display: inline-block;
-  margin: 0 1px;
-  background-color: #4ade80;
+.code-block::before {
+  content: '';
+  display: block;
+  height: 36px;
+  background: linear-gradient(90deg, #374151 0%, #4b5563 100%);
+  border-bottom: 1px solid #4b5563;
   position: relative;
 }
 
-.bar-label {
+.code-block::after {
+  content: '⚬ ⚬ ⚬';
   position: absolute;
-  bottom: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: #fff;
-  font-size: 12px;
+  top: 10px;
+  left: 16px;
+  color: #9ca3af;
+  font-size: 14px;
+  letter-spacing: 3px;
+}
+
+.code-block code {
+  display: block;
+  padding: 20px;
+  color: #f3f4f6;
+  background: transparent;
+  white-space: pre;
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-x: auto;
+  font-family: inherit;
+}
+
+.inline-code {
+  background: #f3f4f6;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 3px 8px;
+  font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 13px;
+  color: #dc2626;
+  font-weight: 500;
+}
+
+/* Scrollbar Styling for Chat */
+.chat-messages::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 3px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .visualizer-container {
+    padding: 20px;
+  }
+  
+  .visualizer-container h2 {
+    font-size: 2rem;
+  }
+  
+  .controls {
+    padding: 20px;
+    gap: 15px;
+  }
+  
+  .controls input[type='text'] {
+    width: 240px;
+  }
+  
+  .ai-chat-container {
+    margin: 20px 15px;
+    border-radius: 12px;
+  }
+  
+  .chat-messages {
+    height: 300px;
+  }
+  
+  .message-content {
+    padding: 20px;
+  }
+  
+  .chat-input {
+    padding: 16px 20px;
+  }
+  
+  .bars-container {
+    padding: 20px;
+    margin: 30px 10px;
+  }
+}
+
+/* Additional subtle improvements */
+.controls input[type='range'] {
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 3px;
+  outline: none;
+}
+
+.controls input[type='range']::-webkit-slider-thumb {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: #6366f1;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.controls input[type='range']::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  background: #6366f1;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }

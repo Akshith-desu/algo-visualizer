@@ -1,70 +1,122 @@
-# Getting Started with Create React App
+# Advanced Algorithm Visualizer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A **React-based** web application for interactively visualizing and learning key algorithms with on‑demand AI explanations powered by the Gemini API.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🚀 Features
 
-### `npm start`
+- **Custom & Random Arrays**: Enter your own sequence or generate random numbers
+- **Array Size Control**: Resize the dataset with a slider for more or fewer elements
+- **Speed Adjustment**: Fine‑tune animation delay via slider or dropdown
+- **Algorithm Selector**: Choose from dropdown menus for each module
+- **Interactive Visuals**:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+  - **Sorting**
+  - **Searching**
+  - **Graph**
+  - **MST**
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **AI Chat Assistant**: Ask questions and receive step‑by‑step algorithm explanations during runtime
+- **Controls**: Start, Reset, and Generate New Data or Graph buttons for each module
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🔢 Algorithms Implemented
 
-### `npm run build`
+### Sorting
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Bubble Sort
+- Selection Sort
+- Insertion Sort
+- Merge Sort
+- Heap Sort
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Searching
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Linear Search
+- Binary Search
+- Jump Search
+- Exponential Search
+- Interpolation Search
+- Fibonacci Search
 
-### `npm run eject`
+### Graph Traversal & Pathfinding
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Breadth‑First Search (BFS)
+- Depth‑First Search (DFS)
+- Dijkstra’s Algorithm
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Minimum Spanning Tree
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Prim’s Algorithm
+- Kruskal’s Algorithm
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## 🛠 Prerequisites
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **Node.js** v14+
+- **npm** v6+ (or **yarn**)
+- **Gemini API Key** (set as `REACT_APP_GEMINI_API_KEY` in `.env`)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## ⚙️ Installation & Setup
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+1. **Clone** your project repo:
 
-### Analyzing the Bundle Size
+   ```bash
+   git clone <repo-url>
+   cd advanced-algo-visualizer
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+2. **Add environment variable**:
 
-### Making a Progressive Web App
+   ```bash
+   echo "REACT_APP_GEMINI_API_KEY=your_api_key" > .env
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+3. **Install dependencies**:
 
-### Advanced Configuration
+   ```bash
+   npm install
+   # or yarn install
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+4. **Run** in development mode:
 
-### Deployment
+   ```bash
+   npm start
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+5. Open `http://localhost:3000` in your browser.
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 📖 Usage
+
+1. **Select** a module (Sorting, Searching, Graph, or MST).
+2. **Configure** data parameters (size, array, nodes, speed).
+3. **Choose** the desired algorithm from the dropdown.
+4. Click **Start** to begin visualization.
+5. **Interact** with the AI assistant panel for explanations or hints.
+6. Use **Reset** or **Generate New** buttons to restart or refresh data.
+
+---
+
+## 🤝 Contributing
+
+Contributions and feedback are welcome:
+
+1. Fork the repo
+2. Create branch: `git checkout -b feature/YourFeature`
+3. Commit changes: \`git commit -m "Add YourFeature"
+
+```
+4. Push to branch: `git push origin feature/YourFeature`
+5. Open a Pull Request
+
+---
+
+```

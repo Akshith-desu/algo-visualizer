@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './SearchingVisualizer.css';
-
+import AIAssistant from '../AiAssistant/AIAssistant';
 
 function SearchingVisualizer() {
   const delay = (ms) => new Promise(res => setTimeout(res, ms));
@@ -298,6 +298,21 @@ function SearchingVisualizer() {
 
       <div className="description">{description}</div>
       <div className="result">{result}</div>
+
+      <AIAssistant 
+        title="🔍 Search Algorithm Assistant"
+        welcomeMessage="👋 Hi! Ask me anything about searching algorithms!"
+        placeholder="Ask about searching algorithms..."
+        contextData={{
+          "Array size": array.length,
+          "Current algorithm": selectedAlgorithm,
+          "Current array": `[${array.join(', ')}]`,
+          "Target value": target,
+          "Search status": isSearching ? 'Currently searching' : 'Ready to search',
+          "Last result": result
+        }}
+        subject="searching algorithms and data structures"
+      />
     </div>
   );
 }
